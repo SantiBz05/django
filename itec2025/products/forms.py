@@ -1,31 +1,51 @@
 from django import forms
 
-from products.models import Product
+from products.models import Product, Order, OrderDetail
 
-class ProductForm(forms.ModelForm): 
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Product
-        fields = ['name', 'price', 'stock']
+        model= Product
+        fields = ['name', 'price', 'stock', 'image']
         widgets = {
             'name': forms.TextInput(
                 attrs={
-                    'class': 'form-control w-25',
-                    'placeholder': 'Ingrese el nombre del producto',
-                    'style':'background:pink',
+                    'class': 'form-control w-25 personalizado',
+                    'placeholder': 'insert product name',
+                    'style': 'background: aquamarine'
                 }
             ),
             'price': forms.TextInput(
                 attrs={
-                    'class': 'form-control w-50',
-                    'placeholder': 'Ingrese el nombre del producto',
-                    'style':'background:lightblue',
+                    'class': 'form-control w-25 personalizado',
+                    'placeholder': 'insert price',
+                    'style': 'background: pink'
                 }
             ),
             'stock': forms.TextInput(
                 attrs={
-                    'class': 'form-control w-75',
-                    'placeholder': 'Ingrese el nombre del producto',
-                    'style':'background:peru',
+                    'class': 'form-control w-25 personalizado',
+                    'placeholder': 'insert stock',
+                    'style': 'background: lightgreen'
                 }
+            ),
+        }
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['customer']
+
+class OrderDetailForm(forms.ModelForm):
+    class Meta:
+        model = OrderDetail
+        fields = ['order','product', 'quantity']
+
+        widgets = {
+            'order': forms.HiddenInput(),
+            'product': forms.Select(
+                attrs={'class': 'form-control w-50'}
+            ),
+            'quantity': forms.NumberInput(
+                attrs={'class': 'form-control w-25'}
             )
         }

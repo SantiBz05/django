@@ -7,6 +7,8 @@ from products.views import (
     ProductDetail,
     ProductList,
     OrderList, 
+    OrderCreate,
+    OrderDetailCreate,
 )
 
 urlpatterns = [
@@ -34,5 +36,20 @@ urlpatterns = [
         route='order_list/', 
         view=OrderList.as_view(), 
         name='order_list'
+    ),
+    path(
+        route='order_list/', 
+        view=OrderList.as_view(), 
+        name='order_list'
+    ),
+    path(
+        route='order_create/', 
+        view=OrderCreate.as_view(), 
+        name='order_create'
+    ),
+    path(
+        route='order/<int:order_id>/detail/', 
+        view=OrderDetailCreate.as_view(), 
+        name='order_detail'
     ),
 ]

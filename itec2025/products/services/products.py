@@ -39,6 +39,8 @@ class ProductService:
                 price=price,
                 stock=stock,
             )
+
+
         
     @staticmethod
     def sum_total_price(product_list: List[Product]) -> Decimal:
